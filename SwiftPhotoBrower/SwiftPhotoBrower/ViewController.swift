@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController,UIPageViewControllerDataSource {
 
+    var imageName: [String] = ["1","2","3","4","5","6","7"]
+    var currentIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +29,7 @@ class ViewController: UIViewController,UIPageViewControllerDataSource {
         pageVC.didMove(toParentViewController: self)
         
         // 4> 添加子控制器
-        let photoVC = PhotoViewController()
+        let photoVC = PhotoViewController(index: currentIndex, imageNames: imageName)
         pageVC.setViewControllers([photoVC], direction: .forward, animated: true, completion: nil);
         
         // 5> 设置数据源
@@ -43,7 +46,11 @@ class ViewController: UIViewController,UIPageViewControllerDataSource {
      */
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let VC = PhotoViewController()
+        let cindex = (viewController as! PhotoViewController).currentIndex
+        if cindex == 0 {
+            return nil
+        }
+        let VC = PhotoViewController(index: cindex - 1, imageNames: imageName)
         return VC
 
     }
@@ -57,7 +64,11 @@ class ViewController: UIViewController,UIPageViewControllerDataSource {
      - returns: 后一个子控制器
      */
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let VC = PhotoViewController()
+        let cindex = (viewController as! PhotoViewController).currentIndex
+        if cindex > imageName.count - 1 {
+            return nil
+        }
+        let VC = PhotoViewController(index: cindex + 1, imageNames: imageName)
         return VC
     }
 
