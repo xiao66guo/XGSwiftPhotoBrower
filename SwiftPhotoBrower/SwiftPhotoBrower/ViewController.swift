@@ -65,7 +65,7 @@ class ViewController: UIViewController,UIPageViewControllerDataSource {
      */
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let cindex = (viewController as! PhotoViewController).currentIndex
-        if cindex > imageName.count - 1 {
+        if cindex == imageName.count - 1 {
             return nil
         }
         let VC = PhotoViewController(index: cindex + 1, imageNames: imageName)
