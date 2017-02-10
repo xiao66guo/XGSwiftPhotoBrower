@@ -2,10 +2,15 @@
 
 实现思路：
 1. 需要一个 RootViewController
+
 2. 创建一个 UIPageViewController
+
 3. 将创建的 PageViewController 添加到 RootViewController 中
+
 4. 设置 PageViewController 的子控制器（数组）
+
 5. 实现 UIPageViewControllerDataSource 的方法
+
 PageViewController 的相关设置：
 
 ```
